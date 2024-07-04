@@ -1,20 +1,19 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const { Configuration, OpenAIApi } = require('openai'); // Import from openai
+const openai = require('openai');
 
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-// Create a new Configuration instance using the class
-const configuration = new Configuration({
+// Create a new OpenAI instance using the module
+const configuration = {
   apiKey: 'sk-proj-IazqnwIFxmuOy0D0q0EzT3BlbkFJycGXzaJdtXSCAV5cp8RN',
   basePath: 'https://api.goose.ai/v1',
-});
+};
 
-const openai = new OpenAIApi(configuration); // Pass the Configuration instance to OpenAIApi
-
+const openaiInstance = new openai(configuration);
 app.post('/generate-narrative', async (req, res) => {
   const { interactions, focusData } = req.body;
   const prompt = `Summarize the following user interactions and focus data on a website:\n${JSON.stringify(interactions, null, 2)}\nFocus Data:\n${JSON.stringify(focusData, null, 2)}`;
