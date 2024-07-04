@@ -13,7 +13,7 @@ const configuration = {
   basePath: 'https://api.goose.ai/v1',
 };
 
-const openaiInstance = new openai.OpenAiApi(configuration);
+const openaiInstance = new openai(configuration);
 app.post('/generate-narrative', async (req, res) => {
   const { interactions, focusData } = req.body;
   const prompt = `Summarize the following user interactions and focus data on a website:\n${JSON.stringify(interactions, null, 2)}\nFocus Data:\n${JSON.stringify(focusData, null, 2)}`;
