@@ -1,5 +1,5 @@
 let interactionData = [];
-
+let focusData = {};
 function logEvent(event) {
   const eventData = {
     type: event.type,
